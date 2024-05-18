@@ -1,6 +1,5 @@
-# NandConverter
-The NandConverter is a project designed to convert the Nintendo Switch Pro Controller's USB-C connection to a GC port on the wii.
-The goal of this is to be able to use a Nintendo Switch Pro Controller as if it were a Gamecube controller. I want the best of both worlds between a Gamecube controller (better button layout, but I can't stand analog triggers) and a Classic Controller Pro (worse layout, digital triggers).
-I could short the springs in my GCN, but that's above my paygrade.
-
+The nInterpreter is a project designed to convert the Nintendo Switch Pro Controller's USB-C connection to a GC female port on the Wii. Other controllers may be added in future versions.<br>
+The goal of this is to be able to use a Nintendo Switch Pro Controller as if it were a Gamecube controller. The important thing is I don't want to resort to software or any Wii homebrew - I simply want to
+make an adapter so the Wii thinks the SPC is a GCC.<br>
+I created this because of a dilemma I had faced: The Gamecube controller is nice, but I dislike the analog triggers.  I could short the springs in my GCC, but that's above my paygrade. The Classic Controller Pro has digital triggers, but I prefer the button layout of the GCC. The Switch Pro Controller is absolutely perfect, and feels amazing. But I cannot plug it into the Wii's USB-A port without Wii homebrew. I could develop software (I believe there is homebrew that lets you use alternative controllers) but I want this to be something that anyone can plug in and instantly use, no setup necessary.<br><br>
 Christopher Wang has a very insightful API for interacting with a GCN here (https://os.mbed.com/users/christopherjwang/code/gamecube_controller/).
