@@ -2,3 +2,4 @@
 Started yesterday (5/17/24) night - I faced my GCC/CCP dilemma since playing Mogi Lounge and the mods told me that using a SPC on the Wii, if I could find a way to do so, is perfectly allowed. And so, that is what I am doing.
 Last night I found an API for interacting with the GCC (https://os.mbed.com/users/christopherjwang/code/gamecube_controller/), but I didn't do a very deep dive. The first problem I have with the SPC: it's bluetooth, but it charges and connects via USB-C.
 I need to find out if the USB-C is used explicitly for charging, or if it also transmits data through that cable. Hopefully it does.
+Update - https://handheldlegend.com/products/retro-c-gamecube-cable-usb-c-to-gamecube-cable?variant=40434041356422 bought one of these - it is a USB-C to GC cable. It ONLY works for things like the PhobGCC (a replacement motherboard), NOT a native SPC. I am going to cut the cable just to look at wiring and the likes.
