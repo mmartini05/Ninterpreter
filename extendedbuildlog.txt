@@ -8,3 +8,5 @@ https://www.bitbuilt.net/forums/index.php?threads/ninterpreter-buildlog.6355/
 This link is to my buildlog - this text document will be my extended buildlog and thoughts, whereas the BitBuilt link is a more proper buildlog
 
 Ordered a ‎1528-5180-ND‎ (#‎5180) from DigiKey, a simple USB-C breakout. I will solder some extending wires to make it easier to put into a breadboard.‎
+
+Night of 5/18/24 (it's 1:30am 5/19) - I settled on the Arduino Nano Every. I began to write the main.ino (just the basic structure). Got a lot of work ahead of me.
