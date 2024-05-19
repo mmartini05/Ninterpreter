@@ -10,16 +10,30 @@ int dMin = 2; // D4
 int gcData = 23; // A0
 uint16_t usbData;
 
-void setup() {
-  // put your setup code here, to run once:
+void setup() { // Initalization
   pinMode(dPlus, INPUT);
   pinMode(dMin, INPUT);
   pinMode(gcData, OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop() { // Loops continuously
   byte high = digitalRead(dPlus);
   byte low = digitalRead(dMin);
-  usbData = (high >> 8) + low;
+  printf("%b\n\r", differential(high, low)); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
+}
+
+byte differential(byte high, byte low){ // This function takes the Data+ and Data- bytes from the USB-C and combines into a single Data byte for the GCC
+  byte diff;
+  int i = 0;
+  while(i < (sizeof(high) - 1)){
+    hBit = high[i];
+    lBit = low[i];
+    if(hBit > lBit){
+      diff[i] = 1;
+    }else{
+      diff[i] = 0;
+    }
+    i++
+  }
+  return diff;
 }
