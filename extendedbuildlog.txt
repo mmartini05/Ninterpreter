@@ -10,3 +10,10 @@ This link is to my buildlog - this text document will be my extended buildlog an
 Ordered a ‎1528-5180-ND‎ (#‎5180) from DigiKey, a simple USB-C breakout. I will solder some extending wires to make it easier to put into a breadboard.‎
 
 Night of 5/18/24 (it's 1:30am 5/19) - I settled on the Arduino Nano Every. I began to write the main.ino (just the basic structure). Got a lot of work ahead of me.
+
+5/19/24
+Wrote a lot more code so far. Added declarations for buttons on SPC/GCC.
+FIRST GOAL: Be able to get input from Data+/Data- lines on SPC's USB-C: HOPEFULLY my differential function works and can actually combine it into a single byte.
+NEXT GOAL: Translate hexadecimal into actual input: be able to read values of all buttons (similar to the aforementioned GCC API and the demo video on that website)
+NEXT GOAL: Be able to translate that into GCC output
+NEXT GOAL: Design PCB to replace breadboard. Once that works, design case, cable, etc.
