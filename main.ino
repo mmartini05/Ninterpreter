@@ -76,18 +76,19 @@ void loop() { // Loops continuously
   printf("%b\n\r", differential(high, low)); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
 }
 
-byte differential(byte high, byte low){ // This function takes the Data+ and Data- bytes from the USB-C and combines into a single Data byte for the GCC
-  byte diff;
-  int i = 0;
-  while(i < (sizeof(high) - 1)){
-    hBit = high[i];
-    lBit = low[i];
-    if(hBit > lBit){
-      diff[i] = 1;
-    }else{
-      diff[i] = 0;
+byte differential(byte high, byte low) { // This function takes the Data+ and Data- bytes from the USB-C and combines into a single Data byte for the GCC
+  byte diff = 0; // Initializes diff (differential byte) to zero
+  bool hBit;
+  bool lBit;
+
+  for (int i = 0; i < 8; i++) { // Loop through all 8 bits of the byte
+    hBit = (high >> i) & 0x01; // Extract the ith bit of high
+    lBit = (low >> i) & 0x01;  // Extract the ith bit of low
+    
+    if (hBit > lBit) {
+      diff |= (1 << i); // Set the ith bit of diff to 1
     }
-    i++
   }
+
   return diff;
 }
