@@ -17,3 +17,6 @@ FIRST GOAL: Be able to get input from Data+/Data- lines on SPC's USB-C: HOPEFULL
 NEXT GOAL: Translate hexadecimal into actual input: be able to read values of all buttons (similar to the aforementioned GCC API and the demo video on that website)
 NEXT GOAL: Be able to translate that into GCC output
 NEXT GOAL: Design PCB to replace breadboard. Once that works, design case, cable, etc.
+
+5/22/24
+USB-C to GC cable from Hand Held Legend came through. I wanted to see if it would invalide my project - it does say that the cable only works for things like b0xx, and it only works on a modded SPC, which makes sense as it actually caused my Wii to shut off (shorted the Wii somehow) lol - the nInterpreter is good to continue work! Arduino Nano Every and my USB-C breakout arrived today, so time for some testing...
