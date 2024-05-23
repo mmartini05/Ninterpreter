@@ -14,3 +14,4 @@ USB-C Male Socket Breakout (https://www.digikey.com/en/products/detail/adafruit-
 <br>
 WiiGamecube Extension Cable (https://a.co/d/5ErQUo0)
 <br>
+30 AWG Solid Core Wire (https://a.co/d/csXVJi8)
