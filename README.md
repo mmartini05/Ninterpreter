@@ -11,5 +11,6 @@ Christopher Wang has a very insightful API for interacting with a GCC here (http
 Arduino Nano Every (https://store.arduino.cc/products/arduino-nano-every)
 <br>
 USB-C Male Socket Breakout (https://www.digikey.com/en/products/detail/adafruit-industries-llc/5180/15287551)
+<br>
 WiiGamecube Extension Cable (https://a.co/d/5ErQUo0)
 <br>
