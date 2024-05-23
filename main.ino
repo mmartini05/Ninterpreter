@@ -5,11 +5,6 @@
 // 3.3 (Blue) line for GCC is from the onboard 3.3V pin
 // GND (Green/White) line for GCC goes to GND (any)
 
-int dPlus = 1; // Port D3
-int dMin = 2; // Port D4
-int gcData = 23; // Port A0
-// Not sure if I should use I2C or UART - if I2C, I'll use Pins 18/19 (SDA/SCL) (Ports A4/A5) - if UART, I'll use Pins 30/31 (RX/TX) (Ports PD0/PD1)
-
 // SPC Controls
 
 bool spc_A;
@@ -65,15 +60,15 @@ int gcc_LTRIG; // L/R triggers maybe should be bool? regardless, SPC L/R trig = 
 int gcc_RTRIG;
 
 void setup() { // Initalization
-  pinMode(dPlus, INPUT);
-  pinMode(dMin, INPUT);
-  pinMode(gcData, OUTPUT);
+  pinMode(1, INPUT); // Data+ is connected to Pin 1 / Port D3
+  pinMode(2, INPUT); // Data- is connected to Pin 2 / Port D4
+  pinMode(31, OUTPUT); // Gamecube Data is connected to Pin 31 / Port PD1 - this is TX (UART)
 }
 
 void loop() { // Loops continuously
-  byte high = digitalRead(dPlus);
-  byte low = digitalRead(dMin);
-  printf("%b\n\r", differential(high, low)); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
+  byte high = digitalRead(1); // Reads 1 byte from Data+
+  byte low = digitalRead(2); // Reads 1 byte from Data-
+  Serial.print(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
 }
 
 byte differential(byte high, byte low) { // This function takes the Data+ and Data- bytes from the USB-C and combines into a single Data byte for the GCC
