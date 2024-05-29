@@ -20,3 +20,6 @@ NEXT GOAL: Design PCB to replace breadboard. Once that works, design case, cable
 
 5/22/24
 USB-C to GC cable from Hand Held Legend came through. I wanted to see if it would invalide my project - it does say that the cable only works for things like b0xx, and it only works on a modded SPC, which makes sense as it actually caused my Wii to shut off (shorted the Wii somehow) lol - the nInterpreter is good to continue work! Arduino Nano Every and my USB-C breakout arrived today, so time for some testing...
+
+5/28/24
+Spent the weekend having to buy new cable (solid core 30 awg) since my 22 awg stranded was being a pain. Turns out the SPC connection is male, so I need a female breakout board. Also changed name from "nInterpreter" to "Ninterpreter"
