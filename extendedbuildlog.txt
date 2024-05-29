@@ -23,3 +23,4 @@ USB-C to GC cable from Hand Held Legend came through. I wanted to see if it woul
 
 5/28/24
 Spent the weekend having to buy new cable (solid core 30 awg) since my 22 awg stranded was being a pain. Turns out the SPC connection is male, so I need a female breakout board. Also changed name from "nInterpreter" to "Ninterpreter"
+Had to buy a female breakout board here: https://a.co/d/0UALeOm - the original one I found was only available in India
