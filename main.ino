@@ -1,3 +1,5 @@
+typedef uint8_t byte; // I believe Arduino (#include <Arduino.h>) does this already - not sure though
+
 // V+ from USB-C goes to 5V on board
 // V- from USB-C goes to GND (any)
 
