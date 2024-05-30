@@ -59,6 +59,9 @@ bool gcc_Z;
 int gcc_LTRIG; // L/R triggers maybe should be bool? regardless, SPC L/R trig = bool, so GCC L/R trig = bool
 int gcc_RTRIG;
 
+uint8_t high[40]; // Data+ from USB-C
+uint8_t low[40]; // Data- from USB-C
+
 void setup() { // Initalization
   Serial.begin(9600);
   pinMode(1, INPUT); // Data+ is connected to Pin 1 / Port D3
@@ -67,13 +70,23 @@ void setup() { // Initalization
 }
 
 void loop() { // Loops continuously
-  uint32_t high = digitalRead(1); // Reads 1 byte from Data+
-  uint32_t low = digitalRead(2); // Reads 1 byte from Data-
-  Serial.println(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
+  for (int i = 0; i < 40; i++) {
+    high[i] = digitalRead(1);
+    low[i] = digitalRead(2);
+    Serial.print(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data-
+    Serial.print(' ');
+    if (i % 10 == 0) {
+      Serial.println();
+    }
+    if (i % 40 == 0) {
+      Serial.println();
+    }
+    delay(200);
+  }
 }
 
-uint32_t differential(uint32_t high, uint32_t low) { // This function takes 40 Data+ bytes and 40 Data- bytes from the USB-C and combines into a 40 Data bytes for the GCC
-  uint32_t diff = 0; // Initializes diff (differential byte) to zero
+uint8_t differential(uint8_t high, uint8_t low) { // This function takes 40 Data+ bytes and 40 Data- bytes from the USB-C and combines into a 40 Data bytes for the GCC
+  uint8_t diff = 0; // Initializes diff (differential byte) to zero
   bool hBit;
   bool lBit;
 
