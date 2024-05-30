@@ -27,3 +27,6 @@ Had to buy a female breakout board here: https://a.co/d/0UALeOm - the original o
 
 5/29/24
 Fears are true - GPIO pins are NOT fast enough to read USB-C signals, luckily the every has a host shield, so I just need a USB-C to Micro adapter and I'll have to go from there!
+
+5/30/24
+Got hex to output clearly, but obviously right now it's not really sending anything useful. Screenshot below
