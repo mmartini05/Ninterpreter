@@ -1,5 +1,3 @@
-typedef uint8_t byte; // I believe Arduino (#include <Arduino.h>) does this already - not sure though
-
 // V+ from USB-C goes to 5V on board
 // V- from USB-C goes to GND (any)
 
@@ -62,19 +60,20 @@ int gcc_LTRIG; // L/R triggers maybe should be bool? regardless, SPC L/R trig = 
 int gcc_RTRIG;
 
 void setup() { // Initalization
+  Serial.begin(9600);
   pinMode(1, INPUT); // Data+ is connected to Pin 1 / Port D3
   pinMode(2, INPUT); // Data- is connected to Pin 2 / Port D4
   pinMode(31, OUTPUT); // Gamecube Data is connected to Pin 31 / Port PD1 - this is TX (UART)
 }
 
 void loop() { // Loops continuously
-  byte high = digitalRead(1); // Reads 1 byte from Data+
-  byte low = digitalRead(2); // Reads 1 byte from Data-
-  Serial.print(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
+  uint32_t high = digitalRead(1); // Reads 1 byte from Data+
+  uint32_t low = digitalRead(2); // Reads 1 byte from Data-
+  Serial.println(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data- (and parse)
 }
 
-byte differential(byte high, byte low) { // This function takes the Data+ and Data- bytes from the USB-C and combines into a single Data byte for the GCC
-  byte diff = 0; // Initializes diff (differential byte) to zero
+uint32_t differential(uint32_t high, uint32_t low) { // This function takes 40 Data+ bytes and 40 Data- bytes from the USB-C and combines into a 40 Data bytes for the GCC
+  uint32_t diff = 0; // Initializes diff (differential byte) to zero
   bool hBit;
   bool lBit;
 
