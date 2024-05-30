@@ -30,4 +30,4 @@ Fears are true - GPIO pins are NOT fast enough to read USB-C signals, luckily th
 
 5/30/24
 Got hex to output clearly, but obviously right now it's not really sending anything useful. Screenshot below
-![Got a nice chunk of 40 bytes each](https://github.com/mmartini05/Ninterpreter/blob/Images/5.30.24.png?raw=true)
+![Got a nice chunk of 40 bytes each](https://github.com/mmartini05/Ninterpreter/blob/main/Images/5.30.24.png)
