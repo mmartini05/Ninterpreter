@@ -73,7 +73,7 @@ void loop() { // Loops continuously
   for (int i = 0; i < 40; i++) {
     high[i] = digitalRead(1);
     low[i] = digitalRead(2);
-    Serial.print(differential(high, low), HEX); // Testing to see if I can read a byte from USB-C Data+/Data-
+    Serial.print(differential(high[i], low[i]), HEX); // Testing to see if I can read a byte from USB-C Data+/Data-
     Serial.print(' ');
     if (i % 10 == 0) {
       Serial.println();
@@ -98,6 +98,5 @@ uint8_t differential(uint8_t high, uint8_t low) { // This function takes 40 Data
       diff |= (1 << i); // Set the ith bit of diff to 1
     }
   }
-
   return diff;
 }
