@@ -32,3 +32,6 @@ Fears are true - GPIO pins are NOT fast enough to read USB-C signals, luckily th
 Got hex to output clearly, but obviously right now it's not really sending anything useful. Screenshot below
 ![Got a nice chunk of 40 bytes each](https://github.com/mmartini05/Ninterpreter/blob/main/Images/5.30.24.png)
 Gonna redo the soldering and charge the SPC - I DOUBT this will make any difference
+
+6/2/24
+Hex output is bogus, nothing useful. Luckily I have a spare Raspberry Pi Pico, which does have a USB host.
