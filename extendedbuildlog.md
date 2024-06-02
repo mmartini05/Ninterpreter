@@ -34,4 +34,4 @@ Got hex to output clearly, but obviously right now it's not really sending anyth
 Gonna redo the soldering and charge the SPC - I DOUBT this will make any difference
 
 6/2/24
-Hex output is bogus, nothing useful. Luckily I have a spare Raspberry Pi Pico, which does have a USB host.
+Hex output is bogus, nothing useful. Luckily I have a spare Raspberry Pi Pico, which does have a USB host. The nice thing is, even though I don't have pinheaders for it, I don't really need it, since the only outputs on the RPi are for UART (GCC)!
