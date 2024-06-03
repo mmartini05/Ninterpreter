@@ -35,3 +35,4 @@ Gonna redo the soldering and charge the SPC - I DOUBT this will make any differe
 
 6/2/24
 Hex output is bogus, nothing useful. Luckily I have a spare Raspberry Pi Pico, which does have a USB host. The nice thing is, even though I don't have pinheaders for it, I don't really need it, since the only outputs on the RPi are for UART (GCC)!
+Teensy 4.1 is exactly what I need! RPi doesn't have USB host actually, but not only does the Teensy 4.1 have USB host/shield capabilities, it can act as a controller. That would be great, but I really just need to interpret and repackage the SPC data.
