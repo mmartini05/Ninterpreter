@@ -10,8 +10,4 @@ Christopher Wang has a very insightful API for interacting with a GCC here (http
 # Parts (BOM Soon)
 Teensy 4.1 (https://a.co/d/1gAxpMp)
 <br>
-USB-C Female Socket Simple Breakout (https://a.co/d/0UALeOm)
-<br>
 WiiGamecube Extension Cable (https://a.co/d/5ErQUo0)
-<br>
-30 AWG Solid Core Wire (https://a.co/d/csXVJi8)
