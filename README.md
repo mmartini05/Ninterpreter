@@ -8,7 +8,7 @@ Buildlog: https://www.bitbuilt.net/forums/index.php?threads/ninterpreter-buildlo
 <br>
 Christopher Wang has a very insightful API for interacting with a GCC here (https://os.mbed.com/users/christopherjwang/code/gamecube_controller/) (https://github.com/christopherjwang/gamecube_controller_mbed).
 # Parts (BOM Soon)
-Arduino Nano Every (https://store.arduino.cc/products/arduino-nano-every)
+Teensy 4.1 (https://a.co/d/1gAxpMp)
 <br>
 USB-C Female Socket Simple Breakout (https://a.co/d/0UALeOm)
 <br>
