@@ -36,3 +36,6 @@ Gonna redo the soldering and charge the SPC - I DOUBT this will make any differe
 6/2/24
 Hex output is bogus, nothing useful. Luckily I have a spare Raspberry Pi Pico, which does have a USB host. The nice thing is, even though I don't have pinheaders for it, I don't really need it, since the only outputs on the RPi are for UART (GCC)!
 Teensy 4.1 is exactly what I need! RPi doesn't have USB host actually, but not only does the Teensy 4.1 have USB host/shield capabilities, it can act as a controller. That would be great, but I really just need to interpret and repackage the SPC data. Teensy 4.1 would've solved all my problems earlier! No breakout board necessary!
+
+6/5/24
+Teensy 4.1 is amazing. I just solder the breakout board to exclusive "USB Host" pads on the board. I just have to use the USBHost_t36 library. I do need new soldering iron tips, as the replacement ones I have been using are poor quality. I bought these Japan import tips and I am excited for those! I want to be able to display the inputs from the SPC, which I think I can do soon. Repackaging it is a different story, though.
