@@ -11,3 +11,7 @@ Christopher Wang has a very insightful API for interacting with a GCC here (http
 Teensy 4.1 (https://a.co/d/1gAxpMp)
 <br>
 WiiGamecube Extension Cable (https://a.co/d/5ErQUo0)
+<br>
+USB-C Simple Breakout Boards (10 pc, Male/Female) (https://a.co/d/6eRGCdG)
+<br>
+30 AWG Solid Core Wire (100 ft) (https://a.co/d/9TfQNIi)
