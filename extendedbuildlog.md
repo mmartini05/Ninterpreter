@@ -39,3 +39,6 @@ Teensy 4.1 is exactly what I need! RPi doesn't have USB host actually, but not o
 
 6/5/24
 Teensy 4.1 is amazing. I just solder the breakout board to exclusive "USB Host" pads on the board. I just have to use the USBHost_t36 library. I do need new soldering iron tips, as the replacement ones I have been using are poor quality. I bought these Japan import tips and I am excited for those! I want to be able to display the inputs from the SPC, which I think I can do soon. Repackaging it is a different story, though.
+
+6/7/24
+Big update! I have code working based on the USBHost_t36 header! It just works for the ABXY buttons for now, and I need to figure out how to make the buttons separate - right now, the button value is just a total number of all the buttons.
