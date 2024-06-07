@@ -75,14 +75,28 @@ void setup() { // Initalization
 }
 
 void loop() { // Loops continuously
-  uint32_t buttons = joysticks[0].getButtons(); // Y = bit 0, X = bit 1, B = bit 2, A = bit 3
+  uint32_t buttons = joysticks[0].getButtons(); // Bits are: Y (0), X (1), B (2), A (3), R (6), ZR (7), - (8), + (9), Rin (10), Lin (11), Home (12), Camera (13), Dpad Down (16), Dpad Up (17), Dpad Right (18), Dpad Left (19), L (22), ZL (23)
   if (buttons != buttons_prev) {
     spc_Y = buttons & 1;
     spc_X = (buttons >> 1) & 1;
     spc_B = (buttons >> 2) & 1;
     spc_A = (buttons >> 3) & 1;
-    Serial.println();
-    Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d", spc_A, spc_B, spc_X, spc_Y);
+    spc_R = (buttons >> 6) & 1;
+    spc_ZR = (buttons >> 7) & 1;
+    spc_MINUS = (buttons >> 8) & 1;
+    spc_PLUS = (buttons >> 9) & 1;
+    spc_RJOY_IN = (buttons >> 10) & 1;
+    spc_LJOY_IN = (buttons >> 11) & 1;
+    spc_HOME = (buttons >> 12) & 1;
+    spc_SS = (buttons >> 13) & 1;
+    spc_DP_D = (buttons >> 16) & 1;
+    spc_DP_U = (buttons >> 17) & 1;
+    spc_DP_R = (buttons >> 18) & 1;
+    spc_DP_L = (buttons >> 19) & 1;
+    spc_L = (buttons >> 22) & 1;
+    spc_ZL = (buttons >> 23) & 1;    
+    Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d\nDPAD UP: %d -- DPAD DOWN: %d, DPAD LEFT: %d, DPAD RIGHT: %d\nPLUS: %d, MINUS: %d HOME: %d CAMERA: %d\nLin: %d Rin: %d\nL: %d R: %d ZL: %d ZR: %d\n\n\n", spc_A, spc_B, spc_X, spc_Y, spc_DP_U, spc_DP_D, spc_DP_L, spc_DP_R, spc_PLUS, spc_MINUS, spc_HOME, spc_SS, spc_LJOY_IN, spc_RJOY_IN, spc_L, spc_R, spc_ZL, spc_ZR);
     buttons_prev = buttons;
   }
+  delay(200);
 }
