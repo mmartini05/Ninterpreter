@@ -11,6 +11,8 @@ USBHost SPC; // Sets up SPC as the USB Host
 USBHIDParser hid(SPC); // HID input decoded with USBHIDParser
 JoystickController joysticks[1] = {JoystickController(SPC)}; // 1 joystick being used (testing)
 
+uint32_t buttons_prev = 0;
+
 // SPC Controls
 
 bool spc_A;
@@ -73,8 +75,14 @@ void setup() { // Initalization
 }
 
 void loop() { // Loops continuously
-  uint32_t buttons = joysticks[0].getButtons();
-  Serial.printf("Joystick(0): buttons = %x", buttons);
-  Serial.println();
-  delay(200);
+  uint32_t buttons = joysticks[0].getButtons(); // Y = bit 0, X = bit 1, B = bit 2, A = bit 3
+  if (buttons != buttons_prev) {
+    spc_Y = buttons & 1;
+    spc_X = (buttons >> 1) & 1;
+    spc_B = (buttons >> 2) & 1;
+    spc_A = (buttons >> 3) & 1;
+    Serial.println();
+    Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d", spc_A, spc_B, spc_X, spc_Y);
+    buttons_prev = buttons;
+  }
 }
