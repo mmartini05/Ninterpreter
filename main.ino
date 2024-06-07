@@ -1,7 +1,7 @@
 #include <USBHost_t36.h>
 
-// V+ from USB-C goes to 5V on board
-// V- from USB-C goes to GND (any)
+// V+ from USB-C goes to 5V on Teensy's USB Host pads
+// V- from USB-C goes to 2nd GND on Teensy's USB Host pads (doesn't matter, I just had a better solder joint with 2nd pad)
 
 // 5V (Yellow) line for GCC is unused currently
 // 3.3 (Blue) line for GCC is from the onboard 3.3V pin
