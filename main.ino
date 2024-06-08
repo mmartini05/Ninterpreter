@@ -1,14 +1,14 @@
 #include <USBHost_t36.h>
 
 // V+ from USB-C goes to 5V on Teensy's USB Host pads
-// V- from USB-C goes to 2nd GND on Teensy's USB Host pads (doesn't matter, I just had a better solder joint with 2nd pad)
+// GND from USB-C goes to 2nd GND on Teensy's USB Host pads (doesn't matter, I just had a better solder joint with 2nd pad)
 
 // 5V (Yellow) line for GCC is unused currently
 // 3.3 (Blue) line for GCC is from the onboard 3.3V pin
 // GND (Green/White) line for GCC goes to GND (any)
 
 USBHost SPC; // Sets up SPC as the USB Host
-USBHIDParser hid(SPC); // HID input decoded with USBHIDParser
+USBHIDParser HID(SPC); // HID input decoded with USBHIDParser
 JoystickController joysticks[1] = {JoystickController(SPC)}; // 1 joystick being used (testing)
 
 uint32_t buttons_prev = 0;
@@ -76,6 +76,13 @@ void setup() { // Initalization
 
 void loop() { // Loops continuously
   uint32_t buttons = joysticks[0].getButtons(); // Bits are: Y (0), X (1), B (2), A (3), R (6), ZR (7), - (8), + (9), Rin (10), Lin (11), Home (12), Camera (13), Dpad Down (16), Dpad Up (17), Dpad Right (18), Dpad Left (19), L (22), ZL (23)
+  // Joystick values are 12 bit signed integer ranging from -2048 to 2047
+  spc_LJOY_X = joysticks[0].getAxis(0);
+  spc_LJOY_Y = joysticks[0].getAxis(1);
+  spc_RJOY_X = joysticks[0].getAxis(2);
+  spc_RJOY_Y = joysticks[0].getAxis(3);
+  Serial.printf("LJOY X: %d -- LJOY Y: %d\nRJOY X: %d -- RJOY Y_ %d", spc_LJOY_X, spc_LJOY_Y, spc_RJOY_X, spc_RJOY_Y);
+  Serial.println();
   if (buttons != buttons_prev) {
     spc_Y = buttons & 1;
     spc_X = (buttons >> 1) & 1;
