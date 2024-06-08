@@ -42,3 +42,4 @@ Teensy 4.1 is amazing. I just solder the breakout board to exclusive "USB Host" 
 
 6/7/24
 Big update! I have code working based on the USBHost_t36 header! It just works for the ABXY buttons for now, and I need to figure out how to make the buttons separate - right now, the button value is just a total number of all the buttons.
+Update: ALL buttons' values are displayed! The SPC sends a long string of binary data - bit 0 is Y, bit 6 is R, bit 13 is camera, bit 19 is Dpad left, so on and so forth.![Works perfect!](https://github.com/mmartini05/Ninterpreter/blob/main/Images/6.7.24.png) I just need to get the LJOY/RJOY X/Y values and I'm done! (Other than rumble...)
