@@ -7,6 +7,7 @@ I created this because of a dilemma I had faced: The Wii's Classic Controller Pr
 Buildlog: https://www.bitbuilt.net/forums/index.php?threads/ninterpreter-buildlog.6357/
 <br>
 Christopher Wang has a very insightful API for interacting with a GCC here (https://os.mbed.com/users/christopherjwang/code/gamecube_controller/) (https://github.com/christopherjwang/gamecube_controller_mbed).
+Another important GCC protocol documentation is found here (https://simplecontrollers.com/blogs/resources/gamecube-protocol).
 # Parts (BOM Soon)
 Teensy 4.1 (https://a.co/d/1gAxpMp)
 <br>
