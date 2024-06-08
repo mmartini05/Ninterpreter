@@ -9,7 +9,7 @@
 
 USBHost SPC; // Sets up SPC as the USB Host
 USBHIDParser HID(SPC); // HID input decoded with USBHIDParser
-JoystickController joysticks[1] = {JoystickController(SPC)}; // 1 joystick being used (testing)
+JoystickController joysticks = JoystickController(SPC); // Left / Right Joysticks
 
 uint32_t buttons_prev = 0;
 
@@ -27,7 +27,7 @@ bool spc_DP_R;
 
 bool spc_PLUS; // Will prob = GCC Start?
 bool spc_MINUS; // Prob won't be used
-bool spc_HOME; // Prob won't be used (or maybe = GCC Start)
+bool spc_HOME; // Not used
 bool spc_SS; // Screenshot button - will not be used (impossible?)
 
 int spc_LJOY_X;
@@ -55,7 +55,7 @@ bool gcc_DP_D;
 bool gcc_DP_L;
 bool gcc_DP_R;
 
-bool gcc_START; // Not sure what to do with this - maybe = SPC plus?
+bool gcc_START;
 
 int gcc_JOY_X;
 int gcc_JOY_Y;
@@ -64,7 +64,7 @@ int gcc_C_X;
 int gcc_C_Y;
 
 bool gcc_Z;
-int gcc_LTRIG; // L/R triggers maybe should be bool? regardless, SPC L/R trig = bool, so GCC L/R trig = bool
+int gcc_LTRIG;
 int gcc_RTRIG;
 
 void setup() { // Initalization
@@ -72,38 +72,83 @@ void setup() { // Initalization
   while(!Serial); // Waits for serial monitor to open
   Serial.println("Begin");
   SPC.begin();
+  printf("GCC VALUES\n\n");
+  delay(100);
 }
 
 void loop() { // Loops continuously
-  uint32_t buttons = joysticks[0].getButtons(); // Bits are: Y (0), X (1), B (2), A (3), R (6), ZR (7), - (8), + (9), Rin (10), Lin (11), Home (12), Camera (13), Dpad Down (16), Dpad Up (17), Dpad Right (18), Dpad Left (19), L (22), ZL (23)
+
+  // This first section gets values for the SPC buttons/joysticks
+
+  // Bits are: Y (0), X (1), B (2), A (3), R (6), ZR (7), - (8), + (9), Rin (10), Lin (11), Home (12), Camera (13), Dpad Down (16), Dpad Up (17), Dpad Right (18), Dpad Left (19), L (22), ZL (23)
+  uint32_t buttons = joysticks.getButtons();
+  spc_Y = buttons & 1;
+  spc_X = (buttons >> 1) & 1;
+  spc_B = (buttons >> 2) & 1;
+  spc_A = (buttons >> 3) & 1;
+  spc_R = (buttons >> 6) & 1;
+  spc_ZR = (buttons >> 7) & 1;
+  spc_MINUS = (buttons >> 8) & 1;
+  spc_PLUS = (buttons >> 9) & 1;
+  spc_RJOY_IN = (buttons >> 10) & 1;
+  spc_LJOY_IN = (buttons >> 11) & 1;
+  spc_HOME = (buttons >> 12) & 1;
+  spc_SS = (buttons >> 13) & 1;
+  spc_DP_D = (buttons >> 16) & 1;
+  spc_DP_U = (buttons >> 17) & 1;
+  spc_DP_R = (buttons >> 18) & 1;
+  spc_DP_L = (buttons >> 19) & 1;
+  spc_L = (buttons >> 22) & 1;
+  spc_ZL = (buttons >> 23) & 1;
+  
   // Joystick values are 12 bit signed integer ranging from -2048 to 2047
-  spc_LJOY_X = joysticks[0].getAxis(0);
-  spc_LJOY_Y = joysticks[0].getAxis(1);
-  spc_RJOY_X = joysticks[0].getAxis(2);
-  spc_RJOY_Y = joysticks[0].getAxis(3);
-  Serial.printf("LJOY X: %d -- LJOY Y: %d\nRJOY X: %d -- RJOY Y_ %d", spc_LJOY_X, spc_LJOY_Y, spc_RJOY_X, spc_RJOY_Y);
+  spc_LJOY_X = joysticks.getAxis(0);
+  spc_LJOY_Y = joysticks.getAxis(1);
+  spc_RJOY_X = joysticks.getAxis(2);
+  spc_RJOY_Y = joysticks.getAxis(3);
+
+  // This second section assigns values to the GCC buttons/joysticks
+
+  gcc_A = spc_A;
+  gcc_B = spc_B;
+  gcc_X = spc_X;
+  gcc_Y = spc_Y;
+
+  gcc_DP_U = spc_DP_U;
+  gcc_DP_D = spc_DP_D;
+  gcc_DP_L = spc_DP_L;
+  gcc_DP_R = spc_DP_R;
+
+  gcc_START = spc_PLUS;
+
+  gcc_JOY_X = convert(spc_LJOY_X);
+  gcc_JOY_Y = convert(spc_LJOY_Y);
+  
+  gcc_C_X = convert(spc_RJOY_X);
+  gcc_C_Y = convert(spc_RJOY_Y);
+
+  gcc_Z = spc_R;
+
+  gcc_LTRIG = ((spc_L | spc_ZL) * 255); // LTRIG is equal to the value of L/ZL 
+  gcc_RTRIG = (spc_ZR * 255);
+
+  Serial.printf("JOY X: %d -- JOY Y: %d\nC X: %d -- C Y_ %d", gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y);
   Serial.println();
-  if (buttons != buttons_prev) {
-    spc_Y = buttons & 1;
-    spc_X = (buttons >> 1) & 1;
-    spc_B = (buttons >> 2) & 1;
-    spc_A = (buttons >> 3) & 1;
-    spc_R = (buttons >> 6) & 1;
-    spc_ZR = (buttons >> 7) & 1;
-    spc_MINUS = (buttons >> 8) & 1;
-    spc_PLUS = (buttons >> 9) & 1;
-    spc_RJOY_IN = (buttons >> 10) & 1;
-    spc_LJOY_IN = (buttons >> 11) & 1;
-    spc_HOME = (buttons >> 12) & 1;
-    spc_SS = (buttons >> 13) & 1;
-    spc_DP_D = (buttons >> 16) & 1;
-    spc_DP_U = (buttons >> 17) & 1;
-    spc_DP_R = (buttons >> 18) & 1;
-    spc_DP_L = (buttons >> 19) & 1;
-    spc_L = (buttons >> 22) & 1;
-    spc_ZL = (buttons >> 23) & 1;    
-    Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d\nDPAD UP: %d -- DPAD DOWN: %d, DPAD LEFT: %d, DPAD RIGHT: %d\nPLUS: %d, MINUS: %d HOME: %d CAMERA: %d\nLin: %d Rin: %d\nL: %d R: %d ZL: %d ZR: %d\n\n\n", spc_A, spc_B, spc_X, spc_Y, spc_DP_U, spc_DP_D, spc_DP_L, spc_DP_R, spc_PLUS, spc_MINUS, spc_HOME, spc_SS, spc_LJOY_IN, spc_RJOY_IN, spc_L, spc_R, spc_ZL, spc_ZR);
-    buttons_prev = buttons;
-  }
+  Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d\nDPAD UP: %d -- DPAD DOWN: %d, DPAD LEFT: %d, DPAD RIGHT: %d\nSTART: %d\nZ: %d LTRIG: %d RTRIG: %d\n\n\n", gcc_A, gcc_B, gcc_X, gcc_Y, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_START, gcc_Z, gcc_LTRIG, gcc_RTRIG);
+  Serial.println();
   delay(200);
+  // This third section constructs 8 bytes to send. Bytes are: ABXY/Start (0), DPAD/L/R/Z (1), Joystick X (2), Joystick Y (3), C Stick X (4), C Stick Y (5), LTRIG (analog) (6), RTRIG (analog) (7)
+}
+
+uint8_t convert(int joystickVal) { // This function converts the value of the Left / Right Joystick (12 bit signed integer) into an 8 bit unsigned integer for the GCC
+  uint16_t adjustedVal = joystickVal + 2048;
+  uint8_t newVal = (adjustedVal * 256) / 4095;
+  if (newVal > 255) {
+    newVal = 255;
+  }
+  return newVal;
+}
+
+void construct() { // This function constructs 7 bytes to send to the GC Data wire
+  
 }
