@@ -132,12 +132,15 @@ void loop() { // Loops continuously
   gcc_LTRIG = ((spc_L | spc_ZL) * 255); // LTRIG is equal to the value of L/ZL 
   gcc_RTRIG = (spc_ZR * 255);
 
-  Serial.printf("JOY X: %d -- JOY Y: %d\nC X: %d -- C Y_ %d", gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y);
+  // This third section constructs 8 bytes to send. Bytes are: ABXY/Start (0), DPAD/L/R/Z (1), Joystick X (2), Joystick Y (3), C Stick X (4), C Stick Y (5), LTRIG (analog) (6), RTRIG (analog) (7)
+
+  uint64_t newByte = construct(gcc_A, gcc_B, gcc_X, gcc_Y, gcc_START, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_LTRIG, gcc_RTRIG, gcc_Z, gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y);
+  Serial.print(newByte, BIN);
   Serial.println();
-  Serial.printf("A: %d -- B: %d -- X: %d -- Y: %d\nDPAD UP: %d -- DPAD DOWN: %d, DPAD LEFT: %d, DPAD RIGHT: %d\nSTART: %d\nZ: %d LTRIG: %d RTRIG: %d\n\n\n", gcc_A, gcc_B, gcc_X, gcc_Y, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_START, gcc_Z, gcc_LTRIG, gcc_RTRIG);
+  Serial.println();
+  Serial.println();
   Serial.println();
   delay(200);
-  // This third section constructs 8 bytes to send. Bytes are: ABXY/Start (0), DPAD/L/R/Z (1), Joystick X (2), Joystick Y (3), C Stick X (4), C Stick Y (5), LTRIG (analog) (6), RTRIG (analog) (7)
 }
 
 uint8_t convert(int joystickVal) { // This function converts the value of the Left / Right Joystick (12 bit signed integer) into an 8 bit unsigned integer for the GCC
@@ -149,6 +152,37 @@ uint8_t convert(int joystickVal) { // This function converts the value of the Le
   return newVal;
 }
 
-void construct() { // This function constructs 7 bytes to send to the GC Data wire
+uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool dp_D, bool dp_L, bool dp_R, int L, int R, bool Z, int joy_X, int joy_Y, int c_X, int c_Y) { // This function constructs 8 bytes to send to the GC Data wire
+  // Byte 0: 0, 0, 0, START, Y, X, B, A
+  // Byte 1: 1, L, R, Z, dp_U, dp_D, dp_R, dp_L -- L/R divided by 255 (to get digital value)
+  // Byte 2: joy_x
+  // Byte 3: joy_y
+  // Byte 4: c_x
+  // Byte 5: c_y
+  // Byte 6: L (analog value)
+  // Byte 7: R (analog value)
   
+  // Bytes 0 - 7
+  uint8_t byte0 = (A << 7) | (B << 6) | (X << 5) | (Y << 4) | (START << 3);
+  uint8_t byte1 = (dp_L << 7) | (dp_R << 6) | (dp_D << 5) | (dp_U << 4) | (Z << 3) | ((R != 0) << 2) | ((L != 0) << 1) | 1;
+  uint8_t byte2 = joy_X;
+  uint8_t byte3 = joy_Y;
+  uint8_t byte4 = c_X;
+  uint8_t byte5 = c_Y;
+  uint8_t byte6 = L;
+  uint8_t byte7 = R;
+  
+  // Combine the bytes into a uint64_t
+  uint64_t result = 0;
+  result |= (uint64_t)byte0;
+  result |= (uint64_t)byte1 << 8;
+  result |= (uint64_t)byte2 << 16;
+  result |= (uint64_t)byte3 << 24;
+  result |= (uint64_t)byte4 << 32;
+  result |= (uint64_t)byte5 << 40;
+  result |= (uint64_t)byte6 << 48;
+  result |= (uint64_t)byte7 << 56;
+
+  return result;
+
 }
