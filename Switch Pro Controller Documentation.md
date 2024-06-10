@@ -27,4 +27,5 @@ The joysticks are accessed with (name of JoystickController).getAxis(n), where n
 | 2 | Right Joystick X|
 | 3 | Right Joystick Y|
 <br>
+
 Each joystick value is a 12 bit signed integer ranging from -2048 to 2047, where 0 is the middle.
