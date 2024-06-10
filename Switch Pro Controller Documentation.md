@@ -15,8 +15,8 @@ The buttons are accessed with (name of JoystickController).getButtons(). Mine lo
 | 1      | -, +, Rin, Lin, Home, Camera (Screenshot), 0, 0|
 | 2      | DP_D, DP_U, DP_R, DP_L, 0, 0, L, ZL            |
 <br>
-Notes:<br><br>
-Rin/Lin is the action of pressing down on a joystick (Lin = pressing Left in, Rin = pressing Right in)<br><br>
+Notes:
+Rin/Lin is the action of pressing down on a joystick (Lin = pressing Left in, Rin = pressing Right in)<br>
 DP_D/U/R/L is the D-Pad (D = Down, U = Up, R = Right, L = Left)<br><br>
 # Joysticks
 The joysticks are accessed with (name of JoystickController).getAxis(n), where n is:<br><br>
@@ -27,5 +27,4 @@ The joysticks are accessed with (name of JoystickController).getAxis(n), where n
 | 2 | Right Joystick X|
 | 3 | Right Joystick Y|
 <br>
-
 Each joystick value is a 12 bit signed integer ranging from -2048 to 2047, where 0 is the middle.
