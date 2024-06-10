@@ -69,11 +69,7 @@ int gcc_RTRIG;
 
 void setup() { // Initalization
   Serial.begin(9600);
-  while(!Serial); // Waits for serial monitor to open
-  Serial.println("Begin");
   SPC.begin();
-  printf("GCC VALUES\n\n");
-  delay(100);
 }
 
 void loop() { // Loops continuously
@@ -134,13 +130,8 @@ void loop() { // Loops continuously
 
   // This third section constructs 8 bytes to send. Bytes are: ABXY/Start (0), DPAD/L/R/Z (1), Joystick X (2), Joystick Y (3), C Stick X (4), C Stick Y (5), LTRIG (analog) (6), RTRIG (analog) (7)
 
-  uint64_t newByte = construct(gcc_A, gcc_B, gcc_X, gcc_Y, gcc_START, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_LTRIG, gcc_RTRIG, gcc_Z, gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y);
-  Serial.print(newByte, BIN);
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  delay(200);
+  uint64_t newByte = construct(gcc_A, gcc_B, gcc_X, gcc_Y, gcc_START, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_LTRIG, gcc_RTRIG, gcc_Z, gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y); // newByte is the 8 bytes that needs to be sent
+
 }
 
 uint8_t convert(int joystickVal) { // This function converts the value of the Left / Right Joystick (12 bit signed integer) into an 8 bit unsigned integer for the GCC
@@ -172,7 +163,7 @@ uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool d
   uint8_t byte6 = L;
   uint8_t byte7 = R;
   
-  // Combine the bytes into a uint64_t
+  // Combine the bytes into uint64_t result
   uint64_t result = 0;
   result |= (uint64_t)byte0;
   result |= (uint64_t)byte1 << 8;
@@ -184,5 +175,4 @@ uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool d
   result |= (uint64_t)byte7 << 56;
 
   return result;
-
 }
