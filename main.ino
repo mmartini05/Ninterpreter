@@ -68,7 +68,7 @@ int gcc_LTRIG;
 int gcc_RTRIG;
 
 void setup() { // Initalization
-  Serial.begin(9600);
+  Serial1.begin(115200); // Pin 1 is Tx (Serial) - GCC baud rate is 115200
   SPC.begin();
 }
 
@@ -130,7 +130,7 @@ void loop() { // Loops continuously
 
   // This third section constructs 8 bytes to send. Bytes are: ABXY/Start (0), DPAD/L/R/Z (1), Joystick X (2), Joystick Y (3), C Stick X (4), C Stick Y (5), LTRIG (analog) (6), RTRIG (analog) (7)
 
-  uint64_t newByte = construct(gcc_A, gcc_B, gcc_X, gcc_Y, gcc_START, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_LTRIG, gcc_RTRIG, gcc_Z, gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y); // newByte is the 8 bytes that needs to be sent
+  construct(gcc_A, gcc_B, gcc_X, gcc_Y, gcc_START, gcc_DP_U, gcc_DP_D, gcc_DP_L, gcc_DP_R, gcc_LTRIG, gcc_RTRIG, gcc_Z, gcc_JOY_X, gcc_JOY_Y, gcc_C_X, gcc_C_Y); // Sends each byte to GCC Serial (Port 1)
 
 }
 
@@ -143,7 +143,7 @@ uint8_t convert(int joystickVal) { // This function converts the value of the Le
   return newVal;
 }
 
-uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool dp_D, bool dp_L, bool dp_R, int L, int R, bool Z, int joy_X, int joy_Y, int c_X, int c_Y) { // This function constructs 8 bytes to send to the GC Data wire
+void construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool dp_D, bool dp_L, bool dp_R, int L, int R, bool Z, int joy_X, int joy_Y, int c_X, int c_Y) { // This function constructs 8 bytes to send to the GC Data wire
   // Byte 0: 0, 0, 0, START, Y, X, B, A
   // Byte 1: 1, L, R, Z, dp_U, dp_D, dp_R, dp_L -- L/R divided by 255 (to get digital value)
   // Byte 2: joy_x
@@ -155,13 +155,21 @@ uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool d
   
   // Bytes 0 - 7
   uint8_t byte0 = (A << 7) | (B << 6) | (X << 5) | (Y << 4) | (START << 3);
+  Serial1.write(byte0);
   uint8_t byte1 = (dp_L << 7) | (dp_R << 6) | (dp_D << 5) | (dp_U << 4) | (Z << 3) | ((R != 0) << 2) | ((L != 0) << 1) | 1;
+  Serial1.write(byte1);
   uint8_t byte2 = joy_X;
+  Serial1.write(byte2);
   uint8_t byte3 = joy_Y;
+  Serial1.write(byte3);
   uint8_t byte4 = c_X;
+  Serial1.write(byte4);
   uint8_t byte5 = c_Y;
+  Serial1.write(byte5);
   uint8_t byte6 = L;
+  Serial1.write(byte6);
   uint8_t byte7 = R;
+  Serial1.write(byte7);
   
   // Combine the bytes into uint64_t result
   uint64_t result = 0;
@@ -174,5 +182,5 @@ uint64_t construct(bool A, bool B, bool X, bool Y, bool START, bool dp_U, bool d
   result |= (uint64_t)byte6 << 48;
   result |= (uint64_t)byte7 << 56;
 
-  return result;
+  //return result;
 }
