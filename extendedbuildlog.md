@@ -46,3 +46,6 @@ Update: ALL buttons' values are displayed! The SPC sends a long string of binary
 
 6/8/24
 Conversion is done! Just need to figure out how to send data through UART ![Amazing. And it sets the midpoint of the GCC joysticks!](https://github.com/mmartini05/Ninterpreter/blob/main/Images/6.8.24.png) (For SPC, joystick X/Y values range from -2048 to 2047, with 0 in the middle, while for GCC, joystick X/Y values range from 0 to 255, where 128 is the middle)
+
+6/9/24
+Keep forgetting to write in here (technically it's 6/10) - the GCC is supposed to send 8 bytes of data. I have created those 8 bytes based on the inputs from the SPC. SPC inputs are decoded and parsed, converted to GCC inputs, and that data is used to create 8 bytes to send. I have to do more research on how to send (probably Serial.write()? - UART doesn't seem possible since data is bidirectional.
