@@ -49,3 +49,6 @@ Conversion is done! Just need to figure out how to send data through UART ![Amaz
 
 6/9/24
 Keep forgetting to write in here (technically it's 6/10) - the GCC is supposed to send 8 bytes of data. I have created those 8 bytes based on the inputs from the SPC. SPC inputs are decoded and parsed, converted to GCC inputs, and that data is used to create 8 bytes to send. I have to do more research on how to send (probably Serial.write()? - UART doesn't seem possible since data is bidirectional. Update 1 am on 6/10 - Serial1 (Pin 1 is Tx) will be used to send data. I realized that instead of combining all 8 bytes and sending 8 bytes over, it may just be easier (and with my limited experience, easier to understand) to just send each byte as the byte is made. It might be faster too, since the code is literally "byte0 = (number that = 0, 0, 0, START, Y, X, B, A); Serial1.write(byte0)" so on and so forth!
+
+6/10/24
+Documented SPC data findings on this repo. Wii seems to turn off to prevent damage as soon as I plug in the GC plug. Not sure why
