@@ -52,3 +52,6 @@ Keep forgetting to write in here (technically it's 6/10) - the GCC is supposed t
 
 6/10/24
 Documented SPC data findings on this repo. Wii seems to turn off to prevent damage as soon as I plug in the GC plug. Not sure why
+
+6/23/24
+Had surgery so I was out for a bit - Wii turned off due to wrong wiring. I am going to start PCB design!
