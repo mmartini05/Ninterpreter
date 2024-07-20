@@ -55,3 +55,6 @@ Documented SPC data findings on this repo. Wii seems to turn off to prevent dama
 
 6/23/24
 Had surgery so I was out for a bit - Wii turned off due to wrong wiring. I am going to start PCB design!
+
+7/20/24
+Been gone for a sec, sorry. Recovery is almost over, and so is the PCB design! I'll try to place the order before I leave for vacation next week. Gerber files and the like will be uploaded.
