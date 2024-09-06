@@ -14,5 +14,5 @@ WiiGamecube Extension Cable (https://a.co/d/5ErQUo0)
 USB-C Breakout Board from Adafruit (https://www.adafruit.com/product/4090)
 <br>
 30 AWG Solid Core Wire (100 ft) (https://a.co/d/9TfQNIi)
-<br?
+<br>
 2.54mm 1x8 Dual Side Pinheaders (20 pc) (https://a.co/d/eHWcvdy)
