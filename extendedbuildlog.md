@@ -58,3 +58,6 @@ Had surgery so I was out for a bit - Wii turned off due to wrong wiring. I am go
 
 7/20/24
 Been gone for a sec, sorry. Recovery is almost over, and so is the PCB design! I'll try to place the order before I leave for vacation next week. Gerber files and the like will be uploaded.
+
+9/5/24
+Been busy because of school, but finally added the PCB
