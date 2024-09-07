@@ -61,3 +61,6 @@ Been gone for a sec, sorry. Recovery is almost over, and so is the PCB design! I
 
 9/5/24
 Been busy because of school, but finally added the PCB
+
+9/6/24
+Finished PCB. Will work on case now
